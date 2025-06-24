@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+require('dotenv').config();
 
 const Objetivo = require('./models/Objetivo');
 const Comite = require('./models/Comite');
@@ -9,10 +10,14 @@ const Contacto = require('./models/Contacto');
 require('./mongo');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+
+// CORS: permite solo el frontend de GitHub Pages
+app.use(cors({
+  origin: 'https://ally0808.github.io' // <-- cambia esto si tu dominio es distinto
+}));
 
 // Middlewares
-app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
