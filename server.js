@@ -83,14 +83,4 @@ app.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
 });
 
-const Galeria = require('./models/Galeria'); // <--- NUEVO
 
-// --- NUEVA RUTA: Galería ---
-app.get('/api/galeria', async (req, res) => {
-  try {
-    const imagenes = await Galeria.find();
-    res.json(imagenes);
-  } catch (err) {
-    res.status(500).json({ error: 'Error al obtener galería' });
-  }
-});
